@@ -14,6 +14,33 @@ struct BinTree{
     Node* NIL = nullptr;
 };
 
+void forward(Node* a) {
+    if (a == nullptr) {
+        return;
+    }
+    std::cout << a->key << ' ';
+    forward(a->left);
+    forward(a->right);
+}
+
+void sym(Node* a) {
+    if (a == nullptr) {
+        return;
+    }
+    sym(a->left);
+    std::cout << a->key << ' ';
+    sym(a->right);
+}
+
+void rev(Node* a) {
+    if (a == nullptr) {
+        return;
+    }
+    rev(a->left);
+    rev(a->right);
+    std::cout << a->key << ' ';
+}
+
 BinTree* create_tree(){
     Node* NIL = new Node;
     BinTree* tree = new BinTree;
@@ -183,6 +210,9 @@ int main(){
     tree = push(tree, 4);
     tree = push(tree, 7);
     tree = push(tree, 13);
+    forward(tree->ROOT);
+    sym(tree->ROOT);
+    rev(tree->ROOT);
     destroy_tree(tree);
     return 0;
 }

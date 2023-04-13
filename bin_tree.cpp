@@ -201,10 +201,14 @@ void clear_tree(BinTree* tree){
 
 int similarity(BinTree* tree, int key) {
     int count = 0;
-    while (find(tree, key) != nullptr) {
-        find(tree, key);
-        count += 1;
-        pop(tree, key);
+    Node* current = find(tree, key);
+    while ((current != nullptr) or (current != tree->NIL)) {
+        if (current->key == key){
+            count++;
+        }
+        BinTree* subtree = create_tree();
+        subtree->ROOT = current->right;
+        current = find(subtree, key);
     }
     return count;
 }

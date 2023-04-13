@@ -199,7 +199,19 @@ void clear_tree(BinTree* tree){
     tree->ROOT = tree->NIL;
 }
 
+int similarity(BinTree* tree, int key) {
+    int count = 0;
+    while (find(tree, key) != nullptr) {
+        find(tree, key);
+        count += 1;
+        pop(tree, key);
+    }
+    return count;
+}
+
 int main(){
+    int n = 0;
+    std::cin >> n;
     BinTree* tree = create_tree();
     tree = push(tree, 8);
     tree = push(tree, 3);
@@ -213,6 +225,7 @@ int main(){
     forward(tree->ROOT);
     sym(tree->ROOT);
     rev(tree->ROOT);
+    std::cout << similarity(tree, n) << std::endl;
     destroy_tree(tree);
     return 0;
 }
